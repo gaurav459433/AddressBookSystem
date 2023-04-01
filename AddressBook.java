@@ -1,12 +1,16 @@
 package addressbook;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
     Scanner sc = new Scanner(System.in);
-    Contact contact = new Contact();
+
+    ArrayList<Contact> contactArrayList = new ArrayList<Contact>();
+
 
     public void addContact() {
+        Contact contact = new Contact();
         System.out.println("Enter First Name: ");
         contact.setFirstName(sc.next());
         System.out.println("Enter Last Name: ");
@@ -24,49 +28,55 @@ public class AddressBook {
         System.out.println("Enter Mobile Number: ");
         contact.setPhoneNumber(sc.nextLong());
 
+        contactArrayList.add(contact);
     }
 
     public void showContact() {
-        System.out.println(contact.toString());
+        for (int i = 0; i < contactArrayList.size(); i++) {
+            Contact contact = contactArrayList.get(i);
+            System.out.println(contact.toString());
+        }
     }
 
     public void editContact() {
         System.out.println("Enter First Name To Edit:");
         String name = sc.next();
-        if (contact.getFirstName().equals(name)) {
-            System.out.println("Enter First Name: ");
-            contact.setFirstName(sc.next());
-            System.out.println("Enter Last Name: ");
-            contact.setLastName(sc.next());
-            System.out.println("Enter Address Name: ");
-            contact.setAddress(sc.next());
-            System.out.println("Enter City Name: ");
-            contact.setCity(sc.next());
-            System.out.println("Enter State Name: ");
-            contact.setState(sc.next());
-            System.out.println("Enter Email: ");
-            contact.setEmail(sc.next());
-            System.out.println("Enter Zip Code: ");
-            contact.setZip(sc.nextInt());
-            System.out.println("Enter Mobile Number: ");
-            contact.setPhoneNumber(sc.nextLong());
-        } else {
-            System.out.println("Contact Doesn't Exist:");
+        for (Contact contact : contactArrayList) {
+            if (contact.getFirstName().equals(name)) {
+                System.out.println("Enter First Name: ");
+                contact.setFirstName(sc.next());
+                System.out.println("Enter Last Name: ");
+                contact.setLastName(sc.next());
+                System.out.println("Enter Address Name: ");
+                contact.setAddress(sc.next());
+                System.out.println("Enter City Name: ");
+                contact.setCity(sc.next());
+                System.out.println("Enter State Name: ");
+                contact.setState(sc.next());
+                System.out.println("Enter Email: ");
+                contact.setEmail(sc.next());
+                System.out.println("Enter Zip Code: ");
+                contact.setZip(sc.nextInt());
+                System.out.println("Enter Mobile Number: ");
+                contact.setPhoneNumber(sc.nextLong());
+            } else {
+                System.out.println("Contact Doesn't Exist:");
+            }
         }
     }
 
     public void deleteContact() {
         System.out.println("Enter First Name To Delete:");
         String name = sc.next();
-        if (contact.getFirstName().equals(name)) {
-            contact.setFirstName(null);
-            contact.setLastName(null);
-            contact.setAddress(null);
-            contact.setCity(null);
-            contact.setState(null);
-            contact.setEmail(null);
-            contact.setZip(0);
-            contact.setPhoneNumber(0);
+        for (Contact contact : contactArrayList) {
+            if (contact.getFirstName().equalsIgnoreCase(name)) {
+                contactArrayList.remove(contact);
+                System.out.println("!!Deleted!!");
+                break;
+            } else {
+                System.out.println("Doesn't exist.");
+            }
+
         }
     }
 }
