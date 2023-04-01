@@ -8,6 +8,38 @@ public class AddressBook {
 
     ArrayList<Contact> contactArrayList = new ArrayList<Contact>();
 
+    public void addressBookOperationWork(ArrayList<Contact> contactArrayList) {
+        AddressBook book = new AddressBook();
+        int flag = 1;
+
+        while (flag == 1) {
+            System.out.println("1. ADD CONTACT \n2. EDIT CONTACT \n3. DISPLAY CONTACT \n4. DELETE CONTACT \n5. EXIT ");
+            System.out.println("Enter the Operation Number");
+            int choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    book.addContact();
+                    break;
+                case 2:
+                    book.editContact();
+                    break;
+                case 3:
+                    book.showContact();
+                    break;
+                case 4:
+                    book.deleteContact();
+                    break;
+                case 5:
+                    flag = 0;
+                    System.out.println("Exited Successfully");
+                    break;
+                default:
+                    System.out.println("Wrong Operation Number");
+                    break;
+            }
+
+        }
+    }
 
     public void addContact() {
         Contact contact = new Contact();
