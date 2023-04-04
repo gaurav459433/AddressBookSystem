@@ -43,24 +43,44 @@ public class AddressBook {
 
     public void addContact() {
         Contact contact = new Contact();
-        System.out.println("Enter First Name: ");
-        contact.setFirstName(sc.next());
-        System.out.println("Enter Last Name: ");
-        contact.setLastName(sc.next());
-        System.out.println("Enter Address Name: ");
-        contact.setAddress(sc.next());
-        System.out.println("Enter City Name: ");
-        contact.setCity(sc.next());
-        System.out.println("Enter State Name: ");
-        contact.setState(sc.next());
-        System.out.println("Enter Email: ");
-        contact.setEmail(sc.next());
-        System.out.println("Enter Zip Code: ");
-        contact.setZip(sc.nextInt());
-        System.out.println("Enter Mobile Number: ");
-        contact.setPhoneNumber(sc.nextLong());
+        if (duplicateCheck() == true) {
+            System.out.println("This Contact Is Already Exist: ");
+        } else {
+            System.out.println("Enter First Name: ");
+            contact.setFirstName(sc.next());
+            System.out.println("Enter Last Name: ");
+            contact.setLastName(sc.next());
+            System.out.println("Enter Address Name: ");
+            contact.setAddress(sc.next());
+            System.out.println("Enter City Name: ");
+            contact.setCity(sc.next());
+            System.out.println("Enter State Name: ");
+            contact.setState(sc.next());
+            System.out.println("Enter Email: ");
+            contact.setEmail(sc.next());
+            System.out.println("Enter Zip Code: ");
+            contact.setZip(sc.nextInt());
+            System.out.println("Enter Mobile Number: ");
+            contact.setPhoneNumber(sc.nextLong());
 
-        contactArrayList.add(contact);
+            contactArrayList.add(contact);
+        }
+    }
+
+    public boolean duplicateCheck() {
+        if (contactArrayList == null) {
+            return false;
+        }
+        if (!contactArrayList.isEmpty()) {
+            System.out.println("Enter First Name to check: ");
+            String name = sc.next();
+            for (int j = 0; j < contactArrayList.size(); j++) {
+                if (name.equals(contactArrayList.get(j).getFirstName())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void showContact() {
