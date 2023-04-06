@@ -1,5 +1,7 @@
 package addressbook;
 
+import java.util.Scanner;
+
 public class Contact {
     private String firstName;
     private String lastName;
@@ -86,5 +88,25 @@ public class Contact {
                 ", zip=" + zip +
                 ", phoneNumber=" + phoneNumber +
                 '}';
+    }
+
+    public void addContactInfo() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("First Name :");
+        this.firstName = scan.next();
+        System.out.println("Last Name :");
+        this.lastName = scan.next();
+        System.out.println("Enter the address :");
+        this.address = scan.next();
+        System.out.println("Enter city : ");
+        this.city = scan.next();
+        System.out.println("Enter state : ");
+        this.state = scan.next();
+        System.out.println("Enter Email : ");
+        this.email = scan.next();
+        System.out.println("Enter Phone Number : ");
+        this.phoneNumber = scan.nextInt();
+        System.out.println("Enter zip : ");
+        this.zip = scan.nextInt();
     }
 }
